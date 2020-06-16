@@ -14,6 +14,7 @@ export default {
 
     .header-title {
         text-align: center;
+        margin: 0;
         padding: 3vh 0;
         background-color: $header-background;
         color: $header-title-color;
