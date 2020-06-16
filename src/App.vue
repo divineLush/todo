@@ -1,15 +1,14 @@
-<template>
-  <div id="app">
-    <h1>todo list</h1>
-    <router-view></router-view>
-  </div>
+<template lang="pug">
+  div#app
+    AppHeader
+    router-view
 </template>
 
 <script>
+import AppHeader from './components/AppHeader.vue'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: { AppHeader }
 }
 </script>
-
-<style lang="scss">
-</style>
