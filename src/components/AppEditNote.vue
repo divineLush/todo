@@ -4,35 +4,35 @@
         div
             label(for="editedNoteTitle") Note Title
             input(v-model="note.title" id="editedNoteTitle")
-            div
-                button(@click="addTodo") Add Todo
-                div(v-for="(todo, i) in note.todos" :key="i")
-                    label(:for="`editedTodoDesc${i}`") Todo Name
-                    input(v-model="todo.name" :id="`editedTodoDesc${i}`")
-                    button(@click="openDeleteModal(todo)") Delete
-                button(@click="save") Save
+            AppNoteTodos(
+                :note="note"
+                :inputID="'editedTodoDesc'"
+                :onDelete="openDeleteModal"
+            )
+            button(@click="save") Save
 
         AppDeleteModal(
             :isVisible="showDeleteModal"
             :onClose="closeDeleteModal"
             :onDelete="deleteTodo"
-            :header="Todo"
+            :header="'Todo'"
         )
 </template>
 
 <script>
 import AppDeleteModal from './modals/AppDeleteModal.vue'
-import { EmptyNote, EmptyTodo, filteredNoteTodos } from '../assets/utils'
+import AppNoteTodos from './AppNoteTodos.vue'
+import { EmptyNote, filteredNoteTodos } from '../assets/utils'
 import { bus } from '../main'
 
 export default {
     name: 'AppEditNote',
 
-    components: { AppDeleteModal },
+    components: { AppDeleteModal, AppNoteTodos },
 
     data() {
         return {
-            note: bus.selectedNote,
+            note: new EmptyNote(),
             showDeleteModal: false,
             selectedTodo: null
         }
@@ -53,9 +53,6 @@ export default {
             this.note.todos = filteredNoteTodos(this.note)
             bus.$emit('editedNote', this.note)
             this.navigateToHome()
-        },
-        addTodo() {
-            this.note.todos.push(new EmptyTodo())
         },
         toggleDeleteModal() {
             this.showDeleteModal = !this.showDeleteModal

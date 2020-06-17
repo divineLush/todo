@@ -8,38 +8,36 @@
                 span(@click="handleEditNote(note)") Edit Note
             div(v-for="(todo, i) in note.todos" :key="i")
                 p {{ todo.name }}
-                p {{ todo.isCompleted }}
-
-        AppDeleteModal(
-            :isVisible="showDeleteModal"
-            :onClose="closeDeleteModal"
-            :onDelete="deleteNote"
-            :header="Note"
-        )
 
         AppModal(v-if="showAddNoteModal" @close="closeModal" @enter="closeModalAndSave")
             h3(slot="header") Add Note
             div(slot="body")
                 label(for="newNoteTitle") Note Title
                 input(v-model="newNote.title" id="newNoteTitle")
-                button(@click="addTodo") Add Todo
-                div(v-for="(todo, i) in newNote.todos" :key="i")
-                    label(:for="`newTodoDesc${i}`") Todo Name
-                    input(v-model="todo.name" :id="`newTodoDesc${i}`")
+                AppNoteTodos(:note="newNote" :inputID="'newTodoDesc'")
             div(slot="footer")
                 button(@click="closeModal") Cancel
                 button(@click="closeModalAndSave") Save
+
+        AppDeleteModal(
+            :isVisible="showDeleteModal"
+            :onClose="closeDeleteModal"
+            :onDelete="deleteNote"
+            :header="'Note'"
+        )
 </template>
 
 <script>
+import AppModal from './modals/AppModal.vue'
 import AppDeleteModal from './modals/AppDeleteModal.vue'
-import { EmptyNote, EmptyTodo, filteredNoteTodos } from '../assets/utils'
+import AppNoteTodos from './AppNoteTodos.vue'
+import { EmptyNote, filteredNoteTodos } from '../assets/utils'
 import { bus } from '../main'
 
 export default {
     name: 'AppHome',
 
-    components: { AppDeleteModal },
+    components: { AppModal, AppDeleteModal, AppNoteTodos },
 
     data() {
         return {
@@ -87,9 +85,6 @@ export default {
         closeModalAndSave() {
             this.addNote()
             this.closeModal()
-        },
-        addTodo() {
-            this.newNote.todos.push(new EmptyTodo())
         },
         openDeleteModal(note) {
             this.showDeleteModal = true
