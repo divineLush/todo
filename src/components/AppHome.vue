@@ -10,12 +10,12 @@
                 p {{ todo.name }}
                 p {{ todo.isCompleted }}
 
-        AppModal(v-if="showDeleteModal" @close="closeDeleteModal" @enter="deleteNote")
-            h3(slot="header") Delete Note
-            p(slot="body") Are you sure?
-            div(slot="footer")
-                button(@click="closeDeleteModal") Cancel
-                button(@click="deleteNote") Delete
+        AppDeleteModal(
+            :isVisible="showDeleteModal"
+            :onClose="closeDeleteModal"
+            :onDelete="deleteNote"
+            :header="Note"
+        )
 
         AppModal(v-if="showAddNoteModal" @close="closeModal" @enter="closeModalAndSave")
             h3(slot="header") Add Note
@@ -32,14 +32,14 @@
 </template>
 
 <script>
-import AppModal from './AppModal.vue'
+import AppDeleteModal from './modals/AppDeleteModal.vue'
 import { EmptyNote, EmptyTodo, filteredNoteTodos } from '../assets/utils'
 import { bus } from '../main'
 
 export default {
     name: 'AppHome',
 
-    components: { AppModal },
+    components: { AppDeleteModal },
 
     data() {
         return {

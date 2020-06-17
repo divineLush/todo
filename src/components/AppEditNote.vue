@@ -12,23 +12,23 @@
                     button(@click="openDeleteModal(todo)") Delete
                 button(@click="save") Save
 
-        AppModal(v-if="showDeleteModal" @close="closeDeleteModal" @enter="deleteTodo")
-            h3(slot="header") Delete Todo
-            p(slot="body") Are you sure?
-            div(slot="footer")
-                button(@click="closeDeleteModal") Cancel
-                button(@click="deleteTodo") Delete
+        AppDeleteModal(
+            :isVisible="showDeleteModal"
+            :onClose="closeDeleteModal"
+            :onDelete="deleteTodo"
+            :header="Todo"
+        )
 </template>
 
 <script>
-import AppModal from './AppModal.vue'
+import AppDeleteModal from './modals/AppDeleteModal.vue'
 import { EmptyNote, EmptyTodo, filteredNoteTodos } from '../assets/utils'
 import { bus } from '../main'
 
 export default {
     name: 'AppEditNote',
 
-    components: { AppModal },
+    components: { AppDeleteModal },
 
     data() {
         return {
