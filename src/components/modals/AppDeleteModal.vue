@@ -15,6 +15,23 @@ export default {
 
     components: { AppModal },
 
-    props: ['isVisible', 'onClose', 'onDelete', 'header']
+    props: {
+        isVisible: {
+            type: Boolean,
+            required: true
+        },
+        onClose: {
+            type: Function,
+            required: true
+        },
+        onDelete: {
+            type: Function,
+            required: true
+        },
+        header: {
+            type: String,
+            required: true
+        }
+    }
 }
 </script>
