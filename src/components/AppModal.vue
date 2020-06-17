@@ -7,7 +7,8 @@
                         slot(name="header")
                     div.modal__wrapper__content__body
                         slot(name="body")
-                        button.modal__wrapper__content__default-button(@click="$emit('close')") OK
+                    div.modal__wrapper__content__footer
+                        slot(name="footer")
 </template>
 
 <script>
@@ -54,11 +55,11 @@ export default {
                 }
 
                 &__body {
-                    margin: 20px 0;
+                    margin-top: 20px;
                 }
 
-                &__default-button {
-                    float: right;
+                &__footer {
+                    margin-bottom: 20px;
                 }
             }
         }
