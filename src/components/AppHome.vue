@@ -9,7 +9,11 @@
             div(v-for="(todo, i) in note.todos" :key="i")
                 p {{ todo.name }}
 
-        AppModal(v-if="showAddNoteModal" @close="closeModal" @enter="closeModalAndSave")
+        AppModal(
+            v-if="showAddNoteModal"
+            @close="closeModal"
+            @enter="closeModalAndSave"
+        )
             h3(slot="header") Add Note
             div(slot="body")
                 label(for="newNoteTitle") Note Title
@@ -54,7 +58,7 @@ export default {
         const notes = JSON.parse(this.$localStorage.get('notes'))
         if (notes)
             this.notes = notes
-        
+
         bus.$on('editedNote', editedNote => {
             let note = this.notes
                 .find(note => note.id === editedNote.id)
