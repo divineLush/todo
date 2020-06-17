@@ -65,6 +65,8 @@ export default {
                 this.saveNotes()
             }
         })
+
+        bus.$on('deleteTodo', data => this.deleteTodo(data))
     },
 
     methods: {
@@ -98,12 +100,23 @@ export default {
             this.selectedNoteID = null
         },
         deleteNote() {
-            this.notes = this.notes.filter(note => note.id !== this.selectedNoteID)
+            this.notes = this.notes
+                .filter(note => note.id !== this.selectedNoteID)
             this.saveNotes()
             this.closeDeleteModal()
         },
         handleEditNote(note) {
             bus.setSelectedNote(note)
+        },
+        deleteTodo(data) {
+            const filteredTodos = data.note.todos
+                .filter(todo => todo.id !== data.todo.id)
+            const editedNote = this.notes
+                .find(note => note.id === data.note.id)
+            if (typeof editedNote !== 'undefined') {
+                editedNote.todos = filteredTodos
+                this.saveNotes()
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ export class EmptyTodo {
     constructor() {
         this.name = ''
         this.isCompleted = false
+        this.id = uuidv4()
     }
 }
 
