@@ -1,20 +1,6 @@
 <template lang="pug">
     div
         button(@click="showAddNoteModal = true") Add note modal
-
-        AppModal(v-if="showAddNoteModal" @close="closeModal")
-            h3(slot="header") Add Note
-            div(slot="body")
-                label(for="newNoteTitle") Note Title
-                input(v-model="newNote.title" id="newNoteTitle")
-                button(@click="addTodo") Add Todo
-                div(v-for="todo in newNote.todos")
-                    label(:for="`newTodoDesc`") Todo Name
-                    input(v-model="todo.name" :id="`newTodoDesc`")
-            div(slot="footer")
-                button(@click="closeModal") Cancel
-                button(@click="closeModalAndSave") Save
-
         div(v-for="(note, i) in notes" :key="i")
             p {{ note.title }}
             button(@click="openDeleteModal(note)") Delete Note
@@ -22,12 +8,25 @@
                 p {{ todo.name }}
                 p {{ todo.isCompleted }}
 
-        AppModal(v-if="showDeleteModal" @close="closeDeleteModal")
+        AppModal(v-if="showDeleteModal" @close="closeDeleteModal" @enter="deleteNote")
             h3(slot="header") Delete Note
             p(slot="body") Are you sure?
             div(slot="footer")
                 button(@click="closeDeleteModal") Cancel
-                button(@click="deleteNote(note)") Delete
+                button(@click="deleteNote") Delete
+
+        AppModal(v-if="showAddNoteModal" @close="closeModal" @enter="closeModalAndSave")
+            h3(slot="header") Add Note
+            div(slot="body")
+                label(for="newNoteTitle") Note Title
+                input(v-model="newNote.title" id="newNoteTitle")
+                button(@click="addTodo") Add Todo
+                div(v-for="(todo, i) in newNote.todos" :key="i")
+                    label(:for="`newTodoDesc${i}`") Todo Name
+                    input(v-model="todo.name" :id="`newTodoDesc${i}`")
+            div(slot="footer")
+                button(@click="closeModal") Cancel
+                button(@click="closeModalAndSave") Save
 </template>
 
 <script>
