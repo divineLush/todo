@@ -49,7 +49,7 @@ export default {
     },
 
     mounted() {
-        // this.$localStorage.remove('notes')
+        this.$localStorage.remove('notes')
         const notes = JSON.parse(this.$localStorage.get('notes'))
         if (notes)
             this.notes = notes
@@ -57,7 +57,11 @@ export default {
 
     methods: {
         addNote() {
+            const filteredTodos = this.newNote.todos
+                .filter(todo => /\S/.test(todo.name))
+            this.newNote.todos = filteredTodos
             this.notes.push(this.newNote)
+            this.newNote = new EmptyNote()
             this.saveNotes()
         },
         saveNotes() {
