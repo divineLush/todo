@@ -1,10 +1,10 @@
 <template lang="pug">
     div
-        button(@click="showAddNoteModal = true") Add note modal
+        button.btn(@click="showAddNoteModal = true") Add note modal
         div(v-for="(note, i) in notes" :key="i")
             p {{ note.title }}
-            button(@click="openDeleteModal(note)") Delete Note
-            router-link(:to="`/edit/${note.id}`")
+            button.btn(@click="openDeleteModal(note)") Delete Note
+            router-link.link(:to="`/edit/${note.id}`")
                 span(@click="handleEditNote(note)") Edit Note
             div(v-for="(todo, i) in note.todos" :key="i")
                 p {{ todo.name }}
@@ -20,8 +20,8 @@
                 input(v-model="newNote.title" id="newNoteTitle")
                 AppNoteTodos(:note="newNote" :inputID="'newTodoDesc'")
             div(slot="footer")
-                button(@click="closeModal") Cancel
-                button(@click="closeModalAndSave") Save
+                button.btn(@click="closeModal") Cancel
+                button.btn(@click="closeModalAndSave") Save
 
         AppDeleteModal(
             :isVisible="showDeleteModal"

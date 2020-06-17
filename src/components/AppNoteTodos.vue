@@ -1,12 +1,12 @@
 <template lang="pug">
     div
-        button(@click="addTodo") Add Todo
+        button.btn(@click="addTodo") Add Todo
         div(v-for="(todo, i) in note.todos" :key="i")
             label(:for="`${inputID}${i}`") Todo Name
             input(v-model="todo.name" :id="`${inputID}${i}`")
             template(v-if="hasDeleteProp")
                 input(type="checkbox" v-model="todo.isCompleted")
-                button(@click="onDelete(todo)") Delete
+                button.btn(@click="onDelete(todo)") Delete
 </template>
 
 <script>

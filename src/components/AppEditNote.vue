@@ -1,6 +1,6 @@
 <template lang="pug">
     div
-        router-link(to="/") Home
+        router-link.link(to="/") Home
         div
             label(for="editedNoteTitle") Note Title
             input(v-model="note.title" id="editedNoteTitle")
@@ -9,7 +9,7 @@
                 :inputID="'editedTodoDesc'"
                 :onDelete="openDeleteModal"
             )
-            button(@click="save") Save
+            button.btn(@click="save") Save
 
         AppDeleteModal(
             :isVisible="showDeleteModal"
