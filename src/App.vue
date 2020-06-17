@@ -1,7 +1,8 @@
 <template lang="pug">
   div#app
     AppHeader
-    router-view
+    main
+      router-view
 </template>
 
 <script>

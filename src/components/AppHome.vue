@@ -1,6 +1,11 @@
 <template lang="pug">
     div
         button(@click="addNote") Add note
+        button(@click="showModal = true") Add note modal
+        AppModal(v-if="showModal" @close="showModal = false")
+            h3(slot="header") Add Note
+            div(slot="body")
+                input(v-model="newNote.title")
         div(v-for="note in notes")
             p {{ note.title }}
             div(v-for="todo in note.todos")
@@ -9,12 +14,18 @@
 </template>
 
 <script>
+import AppModal from './AppModal.vue'
+
 export default {
     name: 'AppHome',
 
+    components: { AppModal },
+
     data() {
         return {
-            notes: []
+            notes: [],
+            showModal: false,
+            newNote: {}
         }
     },
 
