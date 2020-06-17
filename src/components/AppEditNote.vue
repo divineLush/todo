@@ -66,7 +66,6 @@ export default {
         },
         deleteTodo() {
             this.closeDeleteModal()
-            this.navigateToHome()
             bus.$emit('deleteTodo', { todo: this.selectedTodo, note: this.note })
         }
     }
