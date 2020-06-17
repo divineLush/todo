@@ -14,3 +14,8 @@ export class EmptyNote {
         this.id = uuidv4()
     }
 }
+
+export const filteredNoteTodos = (note) =>
+    note.todos
+        .filter(todo => /\S/.test(todo.name))
+    

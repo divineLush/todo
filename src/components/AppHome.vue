@@ -4,6 +4,8 @@
         div(v-for="(note, i) in notes" :key="i")
             p {{ note.title }}
             button(@click="openDeleteModal(note)") Delete Note
+            router-link(:to="`/edit/${note.id}`")
+                span(@click="handleEditNote(note)") Edit Note
             div(v-for="(todo, i) in note.todos" :key="i")
                 p {{ todo.name }}
                 p {{ todo.isCompleted }}
@@ -31,7 +33,8 @@
 
 <script>
 import AppModal from './AppModal.vue'
-import { EmptyNote, EmptyTodo } from '../assets/utils'
+import { EmptyNote, EmptyTodo, filteredNoteTodos } from '../assets/utils'
+import { bus } from '../main'
 
 export default {
     name: 'AppHome',
@@ -49,17 +52,24 @@ export default {
     },
 
     mounted() {
-        this.$localStorage.remove('notes')
+        // this.$localStorage.remove('notes')
         const notes = JSON.parse(this.$localStorage.get('notes'))
         if (notes)
             this.notes = notes
+        
+        bus.$on('editedNote', editedNote => {
+            let note = this.notes
+                .find(note => note.id === editedNote.id)
+            if (typeof note !== 'undefined') {
+                note = editedNote
+                this.saveNotes()
+            }
+        })
     },
 
     methods: {
         addNote() {
-            const filteredTodos = this.newNote.todos
-                .filter(todo => /\S/.test(todo.name))
-            this.newNote.todos = filteredTodos
+            this.newNote.todos = filteredNoteTodos(this.newNote)
             this.notes.push(this.newNote)
             this.newNote = new EmptyNote()
             this.saveNotes()
@@ -91,6 +101,9 @@ export default {
             this.notes = this.notes.filter(note => note.id !== this.selectedNoteID)
             this.saveNotes()
             this.closeDeleteModal()
+        },
+        handleEditNote(note) {
+            bus.setSelectedNote(note)
         }
     }
 }

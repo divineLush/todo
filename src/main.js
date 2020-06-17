@@ -12,6 +12,18 @@ const router = new VueRouter({
   mode: 'history'
 })
 
+export const bus = new Vue({
+  data: {
+    selectedNote: null
+  },
+
+  methods: {
+    setSelectedNote(note) {
+      this.selectedNote = note
+    }
+  }
+})
+
 new Vue({
   el: '#app',
   router,
