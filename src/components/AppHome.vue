@@ -141,6 +141,7 @@ export default {
                 @include centeredContent;
 
                 &__title {
+                    @include text-wrap;
                     font-weight: bold;
                     margin: 0;
                 }
@@ -152,6 +153,10 @@ export default {
 
             &__todo {
                 @include centeredContent;
+                
+                p {
+                    @include text-wrap;
+                }
             }
         }
     }
