@@ -41,15 +41,11 @@ export default {
         cursor: pointer;
         border: 1px solid $btn-border-color;
         font-size: 3vh;
+        font-family: Arial, Helvetica, sans-serif;
         padding: 1.5vh 3vh;
         text-align: center;
         color: $main-text-color;
         background-color: $main-background-color;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
         user-select: none;
         outline:none;
 

@@ -4,12 +4,14 @@
         div.home__note(v-for="(note, i) in notes" :key="i")
             div.home__note__header
                 p.home__note__header__title {{ note.title }}
-                div.home__note__header__control
-                    button.btn.btn--text(@click="openDeleteModal(note)") Delete Note
-                    router-link.link(:to="`/edit/${note.id}`")
-                        span(@click="handleEditNote(note)") Edit Note
-            div.home__note__todo(v-for="(todo, i) in note.todos" :key="i")
-                p {{ todo.name }}
+            div.home__note__todo-wrapper
+                p.home__note__todo-wrapper__todo(
+                    v-for="(todo, i) in note.todos" :key="i"
+                ) {{ todo.name }}
+            div.home__note__control
+                button.btn.btn--text(@click="openDeleteModal(note)") Delete Note
+                router-link.link(:to="`/edit/${note.id}`")
+                    span(@click="handleEditNote(note)") Edit Note
 
         AppModal(
             v-if="showAddNoteModal"
@@ -125,17 +127,15 @@ export default {
 
 <style lang="scss" scoped>
     @import '../assets/scss/mixins';
+    @import '../assets/scss/colors';
 
     .home {
         @include centeredContent;
-        margin-top: 10px;
-
-        .btn {
-            margin: 10px 0;
-        }
 
         &__note {
-            margin: 20px 0;
+            margin: 2vh 0;
+            border: 0.6vh dotted $btn-add-color;
+            padding: 2vh;
 
             &__header {
                 @include centeredContent;
@@ -145,17 +145,23 @@ export default {
                     font-weight: bold;
                     margin: 0;
                 }
+            }
 
-                &__control {
+            &__todo-wrapper {
+                margin: 2.5vh 0;
+
+                &__todo {
                     @include centeredContent;
+                    @include text-wrap;
+                    margin: 1vh 0;
                 }
             }
 
-            &__todo {
+            &__control {
                 @include centeredContent;
-                
-                p {
-                    @include text-wrap;
+
+                .btn {
+                    padding-top: 0 !important;
                 }
             }
         }

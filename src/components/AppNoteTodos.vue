@@ -3,14 +3,15 @@
         button.btn.btn--add(@click="addTodo") Add Todo
         div.todo(v-for="(todo, i) in note.todos" :key="i")
             label.label(:for="`${inputID}${i}`") Todo Name
-            input(v-model="todo.name" :id="`${inputID}${i}`")
+            input(v-model.lazy="todo.name" :id="`${inputID}${i}`")
             div.todo__control(v-if="hasDeleteProp" style="display: flex")
-                div
-                    label.todo__checkbox-container
-                        input.todo__checkbox-container__checkbox(type="checkbox" v-model="todo.isCompleted")
-                        span.todo__checkbox-container__checkmark
-                div
-                    button.btn.btn--text(@click="onDelete(todo)") Delete
+                label.todo__checkbox-container
+                    input.todo__checkbox-container__checkbox(
+                        type="checkbox"
+                        v-model.lazy="todo.isCompleted"
+                    )
+                    span.todo__checkbox-container__checkmark
+                button.btn.btn--text(@click="onDelete(todo)") Delete
 </template>
 
 <script>
@@ -23,11 +24,11 @@ export default {
         note: {
             type: Object,
             required: true
-        }, 
+        },
         inputID: {
             type: String,
             default: ''
-        }, 
+        },
         onDelete: {
             type: Function,
             default: null

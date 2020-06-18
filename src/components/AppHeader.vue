@@ -1,6 +1,6 @@
 <template lang="pug">
-    header
-        h1.header-title Todo List
+    header.header
+        h1.header__title Todo List
 </template>
 
 <script>
@@ -12,13 +12,16 @@ export default {
 <style lang="scss" scoped>
     @import '../assets/scss/colors';
 
-    .header-title {
-        text-align: center;
-        margin: 0;
-        padding: 3vh 0;
-        font-size: 7vh;
-        color: $header-title-color;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: bold;
+    .header {
+        margin: 25px 0;
+
+        &__title {
+            text-align: center;
+            margin: 0;
+            font-size: 7vh;
+            color: $header-title-color;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
     }
 </style>

@@ -1,9 +1,11 @@
 <template lang="pug">
     div
         router-link.link(to="/") Home
+        button.btn.btn--text(@click="undo") Undo
+        button.btn.btn--text(@click="redo") Redo
         div.title-input-container
             label.label(for="editedNoteTitle") Note Title
-            input(v-model="note.title" id="editedNoteTitle")
+            input(v-model.lazy="note.title" id="editedNoteTitle")
         AppNoteTodos(
             :note="note"
             :inputID="'editedTodoDesc'"
@@ -33,8 +35,10 @@ export default {
     data() {
         return {
             note: new EmptyNote(),
+            prevNote: new EmptyNote(),
             showDeleteModal: false,
-            selectedTodo: null
+            selectedTodo: null,
+            some: ''
         }
     },
 
@@ -64,7 +68,9 @@ export default {
         deleteTodo() {
             this.closeDeleteModal()
             bus.$emit('deleteTodo', { todo: this.selectedTodo, note: this.note })
-        }
+        },
+        undo() {},
+        redo() {}
     }
 }
 </script>
