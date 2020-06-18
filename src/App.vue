@@ -71,6 +71,11 @@ export default {
 
       .btn--add {
         @include customBtn($btn-add-color, $main-background-color);
+        margin: 10px 0;
+      }
+
+      .label {
+        margin-right: 5px;
       }
     }
   }

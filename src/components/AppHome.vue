@@ -18,7 +18,7 @@
         )
             h3(slot="header") Add Note
             div(slot="body")
-                label(for="newNoteTitle") Note Title
+                label.label(for="newNoteTitle") Note Title
                 input(v-model="newNote.title" id="newNoteTitle")
                 AppNoteTodos(:note="newNote" :inputID="'newTodoDesc'")
             div(slot="footer")

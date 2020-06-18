@@ -2,7 +2,7 @@
     div
         router-link.link(to="/") Home
         div
-            label(for="editedNoteTitle") Note Title
+            label.label(for="editedNoteTitle") Note Title
             input(v-model="note.title" id="editedNoteTitle")
             AppNoteTodos(
                 :note="note"
