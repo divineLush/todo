@@ -75,7 +75,8 @@ export default {
       }
 
       .label {
-        margin-right: 5px;
+        margin-bottom: 2px;
+        display: block;
       }
     }
   }
