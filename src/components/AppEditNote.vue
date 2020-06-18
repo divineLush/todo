@@ -1,15 +1,15 @@
 <template lang="pug">
     div
         router-link.link(to="/") Home
-        div
+        div.title-input-container
             label.label(for="editedNoteTitle") Note Title
             input(v-model="note.title" id="editedNoteTitle")
-            AppNoteTodos(
-                :note="note"
-                :inputID="'editedTodoDesc'"
-                :onDelete="openDeleteModal"
-            )
-            button.btn(@click="save") Save
+        AppNoteTodos(
+            :note="note"
+            :inputID="'editedTodoDesc'"
+            :onDelete="openDeleteModal"
+        )
+        button.btn.btn--confirm(@click="save") Save
 
         AppDeleteModal(
             :isVisible="showDeleteModal"
@@ -69,6 +69,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+    .title-input-container {
+        margin: 5px 0;
+    }
 </style>
