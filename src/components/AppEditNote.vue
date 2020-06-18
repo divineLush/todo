@@ -35,10 +35,22 @@ export default {
     data() {
         return {
             note: new EmptyNote(),
-            prevNote: new EmptyNote(),
+            prevNoteTitle: '',
+            redoNoteTitle: null,
             showDeleteModal: false,
             selectedTodo: null,
-            some: ''
+        }
+    },
+
+    computed: {
+        watchedTitle() {
+            return this.note.title
+        },
+    },
+
+    watch: {
+        watchedTitle(after, before) {
+            this.prevNoteTitle = before
         }
     },
 
@@ -69,8 +81,14 @@ export default {
             this.closeDeleteModal()
             bus.$emit('deleteTodo', { todo: this.selectedTodo, note: this.note })
         },
-        undo() {},
-        redo() {}
+        undo() {
+            this.redoNoteTitle = this.note.title
+            this.note.title = this.prevNoteTitle
+        },
+        redo() {
+            if (this.redoNoteTitle)
+                this.note.title = this.redoNoteTitle
+        }
     }
 }
 </script>
