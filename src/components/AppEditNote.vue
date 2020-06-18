@@ -54,9 +54,6 @@ export default {
             bus.$emit('editedNote', this.note)
             this.navigateToHome()
         },
-        toggleDeleteModal() {
-            this.showDeleteModal = !this.showDeleteModal
-        },
         openDeleteModal(todo) {
             this.showDeleteModal = true
             this.selectedTodo = todo

@@ -11,8 +11,8 @@
 
         AppModal(
             v-if="showAddNoteModal"
-            @close="closeModal"
-            @enter="closeModalAndSave"
+            @close="closeAddModal"
+            @enter="closeAddModalAndSave"
         )
             h3(slot="header") Add Note
             div(slot="body")
@@ -20,8 +20,8 @@
                 input(v-model="newNote.title" id="newNoteTitle")
                 AppNoteTodos(:note="newNote" :inputID="'newTodoDesc'")
             div(slot="footer")
-                button.btn(@click="closeModal") Cancel
-                button.btn(@click="closeModalAndSave") Save
+                button.btn(@click="closeAddModal") Cancel
+                button.btn(@click="closeAddModalAndSave") Save
 
         AppDeleteModal(
             :isVisible="showDeleteModal"
@@ -82,13 +82,13 @@ export default {
             const notes = JSON.stringify(this.notes)
             this.$localStorage.set('notes', notes)
         },
-        closeModal() {
+        closeAddModal() {
             this.showAddNoteModal = false
             this.newNote = new EmptyNote()
         },
-        closeModalAndSave() {
+        closeAddModalAndSave() {
             this.addNote()
-            this.closeModal()
+            this.closeAddModal()
         },
         openDeleteModal(note) {
             this.showDeleteModal = true
