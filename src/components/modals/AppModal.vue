@@ -68,6 +68,7 @@ export default {
 
                 &__footer {
                     margin-bottom: 20px;
+                    direction: rtl;
                 }
             }
         }

@@ -22,8 +22,8 @@
                 input(v-model="newNote.title" id="newNoteTitle")
                 AppNoteTodos(:note="newNote" :inputID="'newTodoDesc'")
             div(slot="footer")
-                button.btn.btn--cancel(@click="closeAddModal") Cancel
-                button.btn.btn--confirm(@click="closeAddModalAndSave") Save
+                button.btn.btn--confirm.btn--footer(@click="closeAddModalAndSave") Save
+                button.btn.btn--cancel.btn--footer(@click="closeAddModal") Cancel
 
         AppDeleteModal(
             :isVisible="showDeleteModal"
