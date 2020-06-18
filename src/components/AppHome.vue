@@ -1,12 +1,14 @@
 <template lang="pug">
-    div
-        button.btn.btn--add(@click="showAddNoteModal = true") Add note modal
-        div(v-for="(note, i) in notes" :key="i")
-            p {{ note.title }}
-            button.btn(@click="openDeleteModal(note)") Delete Note
-            router-link.link(:to="`/edit/${note.id}`")
-                span(@click="handleEditNote(note)") Edit Note
-            div(v-for="(todo, i) in note.todos" :key="i")
+    div.home
+        button.btn.btn--add(@click="showAddNoteModal = true") Add note
+        div.home__note(v-for="(note, i) in notes" :key="i")
+            div.home__note__header
+                p.home__note__header__title {{ note.title }}
+                div.home__note__header__control
+                    button.btn(@click="openDeleteModal(note)") Delete Note
+                    router-link.link(:to="`/edit/${note.id}`")
+                        span(@click="handleEditNote(note)") Edit Note
+            div.home__note__todo(v-for="(todo, i) in note.todos" :key="i")
                 p {{ todo.name }}
 
         AppModal(
@@ -120,3 +122,37 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    @import '../assets/scss/mixins';
+
+    .home {
+        @include centeredContent;
+        margin-top: 10px;
+
+        .btn {
+            margin: 10px 0;
+        }
+
+        &__note {
+            margin: 20px 0;
+
+            &__header {
+                @include centeredContent;
+
+                &__title {
+                    font-weight: bold;
+                    margin: 0;
+                }
+
+                &__control {
+                    @include centeredContent;
+                }
+            }
+
+            &__todo {
+                @include centeredContent;
+            }
+        }
+    }
+</style>
