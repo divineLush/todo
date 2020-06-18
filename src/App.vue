@@ -80,11 +80,11 @@ export default {
       .btn--text {
         border: none;
         font-weight: bold;
-        color: $btn-add-color;
+        color: $btn-cancel-color;
 
         &:hover {
           background-color: $main-background-color;
-          color: $btn-border-color;
+          color: $btn-confirm-color;
         }
       }
 
