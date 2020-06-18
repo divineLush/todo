@@ -56,6 +56,18 @@ export default {
           color: $main-background-color;
         }
       }
+
+      .btn--cancel {
+        @include customBtn($btn-cancel-color, $main-background-color);
+      }
+
+      .btn--confirm {
+        @include customBtn($btn-confirm-color, $main-background-color);
+      }
+
+      .btn--add {
+        @include customBtn($btn-add-color, $main-background-color);
+      }
     }
   }
 </style>

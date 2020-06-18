@@ -1,6 +1,6 @@
 <template lang="pug">
     div
-        button.btn(@click="addTodo") Add Todo
+        button.btn.btn--add(@click="addTodo") Add Todo
         div(v-for="(todo, i) in note.todos" :key="i")
             label(:for="`${inputID}${i}`") Todo Name
             input(v-model="todo.name" :id="`${inputID}${i}`")

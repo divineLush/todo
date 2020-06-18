@@ -1,6 +1,6 @@
 <template lang="pug">
     div
-        button.btn(@click="showAddNoteModal = true") Add note modal
+        button.btn.btn--add(@click="showAddNoteModal = true") Add note modal
         div(v-for="(note, i) in notes" :key="i")
             p {{ note.title }}
             button.btn(@click="openDeleteModal(note)") Delete Note
@@ -20,8 +20,8 @@
                 input(v-model="newNote.title" id="newNoteTitle")
                 AppNoteTodos(:note="newNote" :inputID="'newTodoDesc'")
             div(slot="footer")
-                button.btn(@click="closeAddModal") Cancel
-                button.btn(@click="closeAddModalAndSave") Save
+                button.btn.btn--cancel(@click="closeAddModal") Cancel
+                button.btn.btn--confirm(@click="closeAddModalAndSave") Save
 
         AppDeleteModal(
             :isVisible="showDeleteModal"

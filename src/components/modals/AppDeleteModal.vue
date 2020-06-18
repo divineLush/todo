@@ -7,8 +7,8 @@
         h3(slot="header") Delete {{ header }}
         p(slot="body") Are you sure?
         div(slot="footer")
-            button.btn(@click="onClose") Cancel
-            button.btn(@click="onDelete") Delete
+            button.btn.btn--cancel(@click="onClose") Cancel
+            button.btn.btn--confirm(@click="onDelete") Delete
 </template>
 
 <script>
