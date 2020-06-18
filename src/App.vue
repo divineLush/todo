@@ -23,6 +23,7 @@ export default {
     padding: 0;
     background-color: $main-background-color;
     color: $main-text-color;
+    font-size: 3vh;
 
     #app {
       @include centeredContent;
@@ -39,7 +40,8 @@ export default {
       .btn {
         cursor: pointer;
         border: 1px solid $btn-border-color;
-        padding: 7px;
+        font-size: 3vh;
+        padding: 1.5vh 3vh;
         text-align: center;
         color: $main-text-color;
         background-color: $main-background-color;
