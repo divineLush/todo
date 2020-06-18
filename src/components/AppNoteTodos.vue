@@ -10,7 +10,7 @@
                         input.todo__checkbox-container__checkbox(type="checkbox" v-model="todo.isCompleted")
                         span.todo__checkbox-container__checkmark
                 div
-                    button.btn(@click="onDelete(todo)") Delete
+                    button.btn.btn--text(@click="onDelete(todo)") Delete
 </template>
 
 <script>

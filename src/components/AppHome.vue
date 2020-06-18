@@ -5,7 +5,7 @@
             div.home__note__header
                 p.home__note__header__title {{ note.title }}
                 div.home__note__header__control
-                    button.btn(@click="openDeleteModal(note)") Delete Note
+                    button.btn.btn--text(@click="openDeleteModal(note)") Delete Note
                     router-link.link(:to="`/edit/${note.id}`")
                         span(@click="handleEditNote(note)") Edit Note
             div.home__note__todo(v-for="(todo, i) in note.todos" :key="i")

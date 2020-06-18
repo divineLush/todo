@@ -51,6 +51,7 @@ export default {
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        outline:none;
 
         &:hover {
           border-color: $btn-border-color;
@@ -74,6 +75,17 @@ export default {
       .btn--add {
         @include customBtn($btn-add-color, $main-background-color);
         margin: 10px 0;
+      }
+
+      .btn--text {
+        border: none;
+        font-weight: bold;
+        color: $btn-add-color;
+
+        &:hover {
+          background-color: $main-background-color;
+          color: $btn-border-color;
+        }
       }
 
       .label {
