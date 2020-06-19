@@ -25,7 +25,6 @@
 import AppDeleteModal from './modals/AppDeleteModal.vue'
 import AppNoteTodos from './AppNoteTodos.vue'
 import { EmptyNote, filteredNoteTodos } from '../assets/utils'
-import { bus } from '../main'
 
 export default {
     name: 'AppEditNote',
@@ -46,6 +45,9 @@ export default {
         watchedTitle() {
             return this.note.title
         },
+        id() {
+            return this.$route.params.id
+        }
     },
 
     watch: {
@@ -55,8 +57,12 @@ export default {
     },
 
     mounted() {
-        if (bus.selectedNote)
-            this.note = bus.selectedNote
+        const note = JSON
+            .parse(this.$localStorage.get('notes'))
+            .find(note => note.id === this.id)
+
+        if (note)
+            this.note = note
         else
             this.navigateToHome()
     },
@@ -67,7 +73,14 @@ export default {
         },
         save() {
             this.note.todos = filteredNoteTodos(this.note)
-            bus.$emit('editedNote', this.note)
+            const notes = JSON.parse(this.$localStorage.get('notes'))
+            for (let i = 0; i < notes.length; i++) {
+                if (notes[i].id === this.note.id) {
+                    notes[i] = this.note
+                    break
+                }
+            }
+            this.$localStorage.set('notes', JSON.stringify(notes))
             this.navigateToHome()
         },
         openDeleteModal(todo) {
@@ -78,8 +91,18 @@ export default {
             this.showDeleteModal = false
         },
         deleteTodo() {
+            const notes = JSON.parse(this.$localStorage.get('notes'))
+            for (let i = 0; i < notes.length; i++) {
+                if (notes[i].id === this.note.id) {
+                    const filteredTodos = notes[i].todos
+                        .filter(todo => todo.id !== this.selectedTodo.id)
+                    notes[i].todos = filteredTodos
+                    this.note.todos = filteredTodos
+                    break
+                }
+            }
+            this.$localStorage.set('notes', JSON.stringify(notes))
             this.closeDeleteModal()
-            bus.$emit('deleteTodo', { todo: this.selectedTodo, note: this.note })
         },
         undo() {
             this.redoNoteTitle = this.note.title

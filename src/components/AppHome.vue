@@ -11,7 +11,7 @@
             div.home__note__control
                 button.btn.btn--text(@click="openDeleteModal(note)") Delete Note
                 router-link.link(:to="`/edit/${note.id}`")
-                    span(@click="handleEditNote(note)") Edit Note
+                    span Edit Note
 
         AppModal(
             v-if="showAddNoteModal"
@@ -40,7 +40,6 @@ import AppModal from './modals/AppModal.vue'
 import AppDeleteModal from './modals/AppDeleteModal.vue'
 import AppNoteTodos from './AppNoteTodos.vue'
 import { EmptyNote, filteredNoteTodos } from '../assets/utils'
-import { bus } from '../main'
 
 export default {
     name: 'AppHome',
@@ -62,17 +61,6 @@ export default {
         const notes = JSON.parse(this.$localStorage.get('notes'))
         if (notes)
             this.notes = notes
-
-        bus.$on('editedNote', editedNote => {
-            let note = this.notes
-                .find(note => note.id === editedNote.id)
-            if (typeof note !== 'undefined') {
-                note = editedNote
-                this.saveNotes()
-            }
-        })
-
-        bus.$on('deleteTodo', data => this.deleteTodo(data))
     },
 
     methods: {
@@ -107,19 +95,6 @@ export default {
                 .filter(note => note.id !== this.selectedNoteID)
             this.saveNotes()
             this.closeDeleteModal()
-        },
-        handleEditNote(note) {
-            bus.setSelectedNote(note)
-        },
-        deleteTodo(data) {
-            const filteredTodos = data.note.todos
-                .filter(todo => todo.id !== data.todo.id)
-            const editedNote = this.notes
-                .find(note => note.id === data.note.id)
-            if (typeof editedNote !== 'undefined') {
-                editedNote.todos = filteredTodos
-                this.saveNotes()
-            }
         }
     }
 }
