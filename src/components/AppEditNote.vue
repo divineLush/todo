@@ -34,25 +34,26 @@ export default {
     data() {
         return {
             note: new EmptyNote(),
-            prevNoteTitle: '',
-            redoNoteTitle: null,
             showDeleteModal: false,
-            selectedTodo: null,
+            selectedTodoID: null,
+            noteStates: [],
+            lastUndoState: new EmptyNote()
         }
     },
 
     computed: {
-        watchedTitle() {
-            return this.note.title
-        },
         id() {
             return this.$route.params.id
         }
     },
 
     watch: {
-        watchedTitle(after, before) {
-            this.prevNoteTitle = before
+        note: {
+            handler(after, before) {
+                const clone = JSON.parse(JSON.stringify(after))
+                this.noteStates.push(clone)
+            },
+            deep: true
         }
     },
 
@@ -85,32 +86,22 @@ export default {
         },
         openDeleteModal(todo) {
             this.showDeleteModal = true
-            this.selectedTodo = todo
+            this.selectedTodoID = todo.id
         },
         closeDeleteModal() {
             this.showDeleteModal = false
         },
         deleteTodo() {
-            const notes = JSON.parse(this.$localStorage.get('notes'))
-            for (let i = 0; i < notes.length; i++) {
-                if (notes[i].id === this.note.id) {
-                    const filteredTodos = notes[i].todos
-                        .filter(todo => todo.id !== this.selectedTodo.id)
-                    notes[i].todos = filteredTodos
-                    this.note.todos = filteredTodos
-                    break
-                }
-            }
-            this.$localStorage.set('notes', JSON.stringify(notes))
+            this.note.todos = this.note.todos
+                .filter(todo => todo.id !== this.selectedTodoID)
             this.closeDeleteModal()
         },
         undo() {
-            this.redoNoteTitle = this.note.title
-            this.note.title = this.prevNoteTitle
+            this.lastUndoState = this.noteStates.pop()
+            this.note = this.noteStates[this.noteStates.length - 1]
         },
         redo() {
-            if (this.redoNoteTitle)
-                this.note.title = this.redoNoteTitle
+            this.note = this.lastUndoState
         }
     }
 }
