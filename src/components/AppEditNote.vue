@@ -37,7 +37,7 @@ export default {
             showDeleteModal: false,
             selectedTodoID: null,
             noteStates: [],
-            lastUndoState: new EmptyNote()
+            lastUndoState: null
         }
     },
 
@@ -97,11 +97,14 @@ export default {
             this.closeDeleteModal()
         },
         undo() {
-            this.lastUndoState = this.noteStates.pop()
-            this.note = this.noteStates[this.noteStates.length - 1]
+            if (this.noteStates.length > 1) {
+                this.lastUndoState = this.noteStates.pop()
+                this.note = this.noteStates[this.noteStates.length - 1]
+            }
         },
         redo() {
-            this.note = this.lastUndoState
+            if (this.lastUndoState !== null)
+                this.note = this.lastUndoState
         }
     }
 }
