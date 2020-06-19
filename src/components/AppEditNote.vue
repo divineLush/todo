@@ -1,8 +1,8 @@
 <template lang="pug">
     div
         router-link.link(to="/") Home
-        button.btn.btn--text(@click="undo") Undo
-        button.btn.btn--text(@click="redo") Redo
+        button.btn.btn--text(:class="{ 'btn--disabled': !isUndoBtnEnabled }" @click="undo") Undo
+        button.btn.btn--text(:class="{ 'btn--disabled': !isRedoBtnEnabled }" @click="redo") Redo
         div.title-input-container
             label.label(for="editedNoteTitle") Note Title
             input(v-model.lazy="note.title" id="editedNoteTitle")
@@ -44,6 +44,12 @@ export default {
     computed: {
         id() {
             return this.$route.params.id
+        },
+        isUndoBtnEnabled() {
+            return this.noteStates.length > 1
+        },
+        isRedoBtnEnabled() {
+            return this.lastUndoState !== null
         }
     },
 
@@ -97,13 +103,13 @@ export default {
             this.closeDeleteModal()
         },
         undo() {
-            if (this.noteStates.length > 1) {
+            if (this.isUndoBtnEnabled) {
                 this.lastUndoState = this.noteStates.pop()
                 this.note = this.noteStates[this.noteStates.length - 1]
             }
         },
         redo() {
-            if (this.lastUndoState !== null)
+            if (this.isRedoBtnEnabled)
                 this.note = this.lastUndoState
         }
     }

@@ -84,6 +84,14 @@ export default {
         }
       }
 
+      .btn--disabled {
+        color: $btn-disabled-color;
+
+        &:hover {
+          color: $btn-disabled-color;
+        }
+      }
+
       .label {
         margin-bottom: 2px;
         display: block;
