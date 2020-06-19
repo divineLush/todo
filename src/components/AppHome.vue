@@ -1,7 +1,7 @@
 <template lang="pug">
     div.home
         button.btn.btn--add(@click="showAddNoteModal = true") Add note
-        div.home__note(v-for="(note, i) in notes" :key="i")
+        div.home__note(v-for="(note, i) in filteredNotes" :key="i")
             div.home__note__header
                 p.home__note__header__title {{ note.title }}
             div.home__note__todo-wrapper
@@ -56,6 +56,23 @@ export default {
         }
     },
 
+    computed: {
+        filteredNotes() {
+            const filteredNotes = [...this.notes]
+            for (let i = 0; i < filteredNotes.length; i++) {
+                filteredNotes[i].todos = filteredNotes[i].todos
+                    .filter(todo => !todo.isCompleted)
+            }
+            return filteredNotes
+        }
+    },
+
+    watch: {
+        notes() {
+            this.saveNotes()
+        }
+    },
+
     mounted() {
         // this.$localStorage.remove('notes')
         const notes = JSON.parse(this.$localStorage.get('notes'))
@@ -68,7 +85,6 @@ export default {
             this.newNote.todos = filteredNoteTodos(this.newNote)
             this.notes.push(this.newNote)
             this.newNote = new EmptyNote()
-            this.saveNotes()
         },
         saveNotes() {
             const notes = JSON.stringify(this.notes)
@@ -93,7 +109,6 @@ export default {
         deleteNote() {
             this.notes = this.notes
                 .filter(note => note.id !== this.selectedNoteID)
-            this.saveNotes()
             this.closeDeleteModal()
         }
     }
