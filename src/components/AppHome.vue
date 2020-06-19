@@ -39,7 +39,7 @@
 import AppModal from './modals/AppModal.vue'
 import AppDeleteModal from './modals/AppDeleteModal.vue'
 import AppNoteTodos from './AppNoteTodos.vue'
-import { EmptyNote, filteredNoteTodos } from '../assets/utils'
+import { EmptyNote, filteredNoteTodos, deepClone } from '../assets/utils'
 
 export default {
     name: 'AppHome',
@@ -58,7 +58,7 @@ export default {
 
     computed: {
         filteredNotes() {
-            const filteredNotes = [...this.notes]
+            const filteredNotes = deepClone(this.notes)
             for (let i = 0; i < filteredNotes.length; i++) {
                 filteredNotes[i].todos = filteredNotes[i].todos
                     .filter(todo => !todo.isCompleted)

@@ -16,7 +16,9 @@ export class EmptyNote {
     }
 }
 
-export const filteredNoteTodos = (note) =>
+export const filteredNoteTodos = note =>
     note.todos
         .filter(todo => /\S/.test(todo.name))
-    
+
+export const deepClone = obj =>
+    JSON.parse(JSON.stringify(obj))

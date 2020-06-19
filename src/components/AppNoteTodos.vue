@@ -55,10 +55,6 @@ export default {
     .todo {
         margin-bottom: 20px;
 
-        // &__checkbox {
-        //     margin: 0 7px;
-        // }
-
         &__control {
             margin-top: 5px;
         }

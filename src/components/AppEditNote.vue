@@ -24,7 +24,7 @@
 <script>
 import AppDeleteModal from './modals/AppDeleteModal.vue'
 import AppNoteTodos from './AppNoteTodos.vue'
-import { EmptyNote, filteredNoteTodos } from '../assets/utils'
+import { EmptyNote, filteredNoteTodos, deepClone } from '../assets/utils'
 
 export default {
     name: 'AppEditNote',
@@ -50,7 +50,7 @@ export default {
     watch: {
         note: {
             handler(after, before) {
-                const clone = JSON.parse(JSON.stringify(after))
+                const clone = deepClone(after)
                 this.noteStates.push(clone)
             },
             deep: true
