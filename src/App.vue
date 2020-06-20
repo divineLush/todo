@@ -33,7 +33,7 @@ export default {
         color: $link-primary-color;
 
         &:hover {
-          color: $header-title-color;
+          color: $btn-confirm-color;
         }
       }
 
