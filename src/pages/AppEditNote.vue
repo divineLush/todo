@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import AppDeleteModal from './modals/AppDeleteModal.vue'
-import AppNoteTodos from './AppNoteTodos.vue'
+import AppDeleteModal from '../components/modals/AppDeleteModal.vue'
+import AppNoteTodos from '../components/AppNoteTodos.vue'
 import { EmptyNote, filteredNoteTodos, deepClone } from '../assets/utils'
 
 export default {

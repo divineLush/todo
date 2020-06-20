@@ -1,5 +1,5 @@
-import AppHome from './components/AppHome.vue'
-import AppEditNote from './components/AppEditNote.vue'
+import AppHome from './pages/AppHome.vue'
+import AppEditNote from './pages/AppEditNote.vue'
 
 export const routes = [
     { path: '', component: AppHome },
