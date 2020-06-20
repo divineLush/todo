@@ -22,8 +22,9 @@
             div(slot="body")
                 AppNoteTodos(:note="newNote" :inputID="'newTodoDesc'")
             div(slot="footer")
-                button.btn.btn--confirm.btn--footer(@click="closeAddModalAndSave") Save
-                button.btn.btn--cancel.btn--footer(@click="closeAddModal") Cancel
+                div
+                    button.btn.btn--cancel(@click="closeAddModal") Cancel
+                    button.btn.btn--confirm(@click="closeAddModalAndSave" style="float: right") Save
 
         AppDeleteModal(
             :isVisible="showDeleteModal"

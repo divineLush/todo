@@ -56,10 +56,6 @@ export default {
         }
       }
 
-      .btn--footer {
-        margin: 0 5px;
-      }
-
       .btn--cancel {
         @include customBtn($btn-cancel-color, $main-background-color);
       }

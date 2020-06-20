@@ -51,7 +51,7 @@ export default {
             &__content {
                 width: fit-content;
                 margin: 0px auto;
-                padding: 20px 30px;
+                padding: 3vh 4vh;
                 background-color: #fff;
                 border-radius: 2px;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
@@ -68,7 +68,6 @@ export default {
 
                 &__footer {
                     margin-top: 20px;
-                    direction: rtl;
                 }
             }
         }

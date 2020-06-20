@@ -74,7 +74,7 @@ export default {
         &__checkbox-container {
             display: block;
             position: relative;
-            padding-left: 35px;
+            padding-left: 6vh;
             margin-bottom: 12px;
             cursor: pointer;
             font-size: 22px;
@@ -95,8 +95,8 @@ export default {
                 position: absolute;
                 top: 0;
                 left: 0;
-                height: 31px;
-                width: 31px;
+                height: 6.5vh;
+                width: 6.5vh;
                 background-color: #eee;
 
                 &:after {
@@ -119,12 +119,12 @@ export default {
             }
 
             & &__checkmark:after {
-                left: 12px;
-                top: 7px;
-                width: 5px;
-                height: 10px;
+                left: 2.4vh;
+                top: 1.5vh;
+                width: 1vh;
+                height: 2vh;
                 border: solid white;
-                border-width: 0 3px 3px 0;
+                border-width: 0 0.5vh 0.5vh 0;
                 -webkit-transform: rotate(45deg);
                 -ms-transform: rotate(45deg);
                 transform: rotate(45deg);
