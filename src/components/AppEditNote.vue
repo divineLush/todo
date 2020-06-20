@@ -53,6 +53,7 @@ export default {
         },
         isRedoBtnEnabled() {
             return this.lastUndoState !== null
+                && this.note !== this.lastUndoState
         }
     },
 
