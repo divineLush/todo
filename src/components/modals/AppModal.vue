@@ -49,7 +49,7 @@ export default {
             vertical-align: middle;
 
             &__content {
-                width: 200px;
+                width: fit-content;
                 margin: 0px auto;
                 padding: 20px 30px;
                 background-color: #fff;

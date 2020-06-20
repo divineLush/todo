@@ -97,13 +97,20 @@ export default {
         display: block;
       }
 
-      // .text-input {
-      //   border: 1px solid $link-primary-color;
+      .text-input {
+        width: 30vh;
+        height: 3vh;
+        font-size: 3vh;
+        padding: 0.5vh;
+        background-color: $main-background-color;
+        border: 1px solid $main-text-color;
+        outline: none;
 
-      //   &:focus {
-      //     border: 1px solid $btn-add-color;
-      //   }
-      // }
+        &:focus {
+          background-color: $main-text-color;
+          color: $main-background-color
+        }
+      }
     }
   }
 </style>
