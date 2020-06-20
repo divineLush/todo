@@ -39,7 +39,7 @@ export default {
 
       .btn {
         cursor: pointer;
-        border: 1px solid $btn-border-color;
+        border: 0.2vh solid $btn-border-color;
         font-size: 3vh;
         font-family: Arial, Helvetica, sans-serif;
         padding: 1.5vh 3vh;
@@ -99,7 +99,7 @@ export default {
         font-size: 3vh;
         padding: 0.5vh;
         background-color: $main-background-color;
-        border: 1px solid $main-text-color;
+        border: 0.2vh solid $main-text-color;
         outline: none;
 
         &:focus {
