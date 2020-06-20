@@ -1,11 +1,14 @@
 <template lang="pug">
     div
         router-link.link(to="/") Home
-        button.btn.btn--text(:class="{ 'btn--disabled': !isUndoBtnEnabled }" @click="undo") Undo
-        button.btn.btn--text(:class="{ 'btn--disabled': !isRedoBtnEnabled }" @click="redo") Redo
-        div.title-input-container
-            label.label(for="editedNoteTitle") Note Title
-            input.text-input(v-model.lazy="note.title" id="editedNoteTitle")
+        button.btn.btn--text(
+            :class="{ 'btn--disabled': !isUndoBtnEnabled }"
+            @click="undo"
+        ) Undo
+        button.btn.btn--text(
+            :class="{ 'btn--disabled': !isRedoBtnEnabled }"
+            @click="redo"
+        ) Redo
         AppNoteTodos(
             :note="note"
             :inputID="'editedTodoDesc'"
@@ -115,9 +118,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-    .title-input-container {
-        margin: 5px 0;
-    }
-</style>

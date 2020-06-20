@@ -1,9 +1,12 @@
 <template lang="pug">
     div
-        button.btn.btn--add(@click="addTodo") Add Todo
+        div.text-input-container(style="margin: 0 0 6vh")
+            label.label(for="editedNoteTitle") Note Title
+            input.text-input(v-model.lazy="note.title" id="editedNoteTitle")
         div.todo(v-for="(todo, i) in note.todos" :key="i")
-            label.label(:for="`${inputID}${i}`") Todo Name
-            input.text-input(v-model.lazy="todo.name" :id="`${inputID}${i}`")
+            div.text-input-container
+                label.label(:for="`${inputID}${i}`") Todo Name
+                input.text-input(v-model.lazy="todo.name" :id="`${inputID}${i}`")
             div.todo__control(v-if="hasDeleteProp" style="display: flex")
                 label.todo__checkbox-container
                     input.todo__checkbox-container__checkbox(
@@ -12,6 +15,7 @@
                     )
                     span.todo__checkbox-container__checkmark
                 button.btn.btn--text(@click="onDelete(todo)") Delete
+        button.btn.btn--add(v-if="canAddTodo" @click="addTodo") Add Todo
 </template>
 
 <script>
@@ -38,12 +42,16 @@ export default {
     computed: {
         hasDeleteProp() {
             return this.onDelete !== null
+        },
+        canAddTodo() {
+            return (!this.hasDeleteProp && this.note.todos.length < 3) || this.hasDeleteProp
         }
     },
 
     methods: {
         addTodo() {
-            this.note.todos.push(new EmptyTodo())
+            if (this.canAddTodo)
+                this.note.todos.push(new EmptyTodo())
         }
     }
 }
@@ -51,6 +59,10 @@ export default {
 
 <style lang="scss" scoped>
     @import '../assets/scss/colors';
+
+    .text-input-container {
+        margin: 3vh 0;
+    }
 
     .todo {
         margin-bottom: 20px;
