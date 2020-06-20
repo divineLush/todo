@@ -17,16 +17,8 @@ export default {
 
     mounted() {
         document.addEventListener('keydown', e => {
-            switch (e.keyCode) {
-                case(27):
-                    this.$emit('close')
-                    break
-                case(13):
-                    this.$emit('enter')
-                    break
-                default:
-                    break
-            }
+            if (e.keyCode === 27)
+                this.$emit('close')
         })
     }
 }

@@ -2,7 +2,6 @@
     AppModal(
         v-if="isVisible"
         @close="onClose"
-        @enter="onDelete"
     )
         h3(slot="header") Delete {{ header }}
         p(slot="body") Are you sure?

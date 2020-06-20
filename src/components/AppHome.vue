@@ -16,7 +16,6 @@
         AppModal(
             v-if="showAddNoteModal"
             @close="closeAddModal"
-            @enter="closeAddModalAndSave"
         )
             h3(slot="header") Add Note
             div(slot="body")
