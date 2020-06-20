@@ -96,6 +96,14 @@ export default {
         margin-bottom: 2px;
         display: block;
       }
+
+      // .text-input {
+      //   border: 1px solid $link-primary-color;
+
+      //   &:focus {
+      //     border: 1px solid $btn-add-color;
+      //   }
+      // }
     }
   }
 </style>

@@ -3,7 +3,7 @@
         button.btn.btn--add(@click="addTodo") Add Todo
         div.todo(v-for="(todo, i) in note.todos" :key="i")
             label.label(:for="`${inputID}${i}`") Todo Name
-            input(v-model.lazy="todo.name" :id="`${inputID}${i}`")
+            input.text-input(v-model.lazy="todo.name" :id="`${inputID}${i}`")
             div.todo__control(v-if="hasDeleteProp" style="display: flex")
                 label.todo__checkbox-container
                     input.todo__checkbox-container__checkbox(

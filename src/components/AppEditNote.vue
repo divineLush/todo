@@ -5,7 +5,7 @@
         button.btn.btn--text(:class="{ 'btn--disabled': !isRedoBtnEnabled }" @click="redo") Redo
         div.title-input-container
             label.label(for="editedNoteTitle") Note Title
-            input(v-model.lazy="note.title" id="editedNoteTitle")
+            input.text-input(v-model.lazy="note.title" id="editedNoteTitle")
         AppNoteTodos(
             :note="note"
             :inputID="'editedTodoDesc'"

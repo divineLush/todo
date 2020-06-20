@@ -21,7 +21,7 @@
             h3(slot="header") Add Note
             div(slot="body")
                 label.label(for="newNoteTitle") Note Title
-                input(v-model="newNote.title" id="newNoteTitle")
+                input.text-input(v-model="newNote.title" id="newNoteTitle")
                 AppNoteTodos(:note="newNote" :inputID="'newTodoDesc'")
             div(slot="footer")
                 button.btn.btn--confirm.btn--footer(@click="closeAddModalAndSave") Save
