@@ -110,6 +110,7 @@ export default {
             if (this.isUndoBtnEnabled) {
                 this.lastUndoState = this.noteStates.pop()
                 this.note = this.noteStates[this.noteStates.length - 1]
+                this.noteStates.pop()
             }
         },
         redo() {
