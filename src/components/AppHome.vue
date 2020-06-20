@@ -73,7 +73,6 @@ export default {
     },
 
     mounted() {
-        // this.$localStorage.remove('notes')
         const notes = JSON.parse(this.$localStorage.get('notes'))
         if (notes)
             this.notes = notes
@@ -97,6 +96,11 @@ export default {
             this.addNote()
             this.closeAddModal()
         },
+        
+        // I know duplicating code is a bad idea,
+        // but manipulating the state of the parent component 
+        // by mutating props is considered an anti-pattern in Vue,
+        // so I would rather leave it as it is
         openDeleteModal(note) {
             this.showDeleteModal = true
             this.selectedNoteID = note.id
