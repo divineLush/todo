@@ -87,7 +87,7 @@ export default {
             showDiscardModal: false,
             selectedTodoID: null,
             noteStates: [],
-            lastUndoState: null
+            redoStates: []
         }
     },
 
@@ -99,8 +99,8 @@ export default {
             return this.noteStates.length > 1
         },
         isRedoBtnEnabled() {
-            return this.lastUndoState !== null
-                && this.note !== this.lastUndoState
+            return this.redoStates.length !== 0
+                && this.note !== this.redoStates[this.redoStates.length - 1]
         },
         undoBtnClass() {
             return disabledBtnClass(!this.isUndoBtnEnabled)
@@ -161,12 +161,16 @@ export default {
         deleteTodo() {
             this.note.todos = filterByID(this.note.todos, this.selectedTodoID)
         },
+        updateRedoStates() {
+            const lastState = this.noteStates.pop()
+            this.redoStates.push(lastState)
+        },
         handleUndo() {
             if (this.isUndoBtnEnabled)
                 this.undo()
         },
         undo() {
-            this.lastUndoState = this.noteStates.pop()
+            this.updateRedoStates()
             this.note = this.noteStates[this.noteStates.length - 1]
             this.noteStates.pop()
         },
@@ -175,7 +179,7 @@ export default {
                 this.redo()
         },
         redo() {
-            this.note = this.lastUndoState
+            this.note = this.redoStates.pop()
         },
         handleHomeBtn() {
             if (!this.isUndoBtnEnabled)
@@ -202,7 +206,7 @@ export default {
             this.toggleDiscardModal()
         },
         discard() {
-            this.lastUndoState = this.noteStates.pop()
+            this.updateRedoStates()
             const firstNote = this.noteStates[0]
             this.noteStates = []
             this.note = firstNote
