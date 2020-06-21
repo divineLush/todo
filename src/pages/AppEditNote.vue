@@ -10,12 +10,27 @@
                 :class="{ 'btn--disabled': !isRedoBtnEnabled }"
                 @click="redo"
             ) Redo
+            button.btn.btn--text(
+                :class="{ 'btn--disabled': !isUndoBtnEnabled }"
+                @click="handleDiscardModal"
+            ) Discard
         AppNoteTodos(
             :note="note"
             :inputID="'editedTodoDesc'"
             :onDelete="openDeleteModal"
         )
         button.btn.btn--confirm(@click="save") Save
+
+        AppModal(
+            :isVisible="showHomeModal"
+            @close="toggleHomeModal"
+        )
+            h3(slot="header") You are about to leave the page
+            p(slot="body") All your changes will be lost
+            div(slot="footer")
+                div
+                    button.btn.btn--cancel(@click="toggleHomeModal") Cancel
+                    button.btn.btn--confirm(@click="discardAndGoHome" style="margin-left: 3vh") Go Home
 
         AppModal(
             :isVisible="showDiscardModal"
@@ -26,7 +41,7 @@
             div(slot="footer")
                 div
                     button.btn.btn--cancel(@click="toggleDiscardModal") Cancel
-                    button.btn.btn--confirm(@click="discard" style="margin-left: 3vh") Go Home
+                    button.btn.btn--confirm(@click="discard" style="margin-left: 3vh") Discard
 
         AppDeleteModal(
             :isVisible="showDeleteModal"
@@ -57,6 +72,7 @@ export default {
         return {
             note: new EmptyNote(),
             showDeleteModal: false,
+            showHomeModal: false,
             showDiscardModal: false,
             selectedTodoID: null,
             noteStates: [],
@@ -141,14 +157,28 @@ export default {
             if (!this.isUndoBtnEnabled)
                 this.navigateToHome()
             else
-                this.toggleDiscardModal()
+                this.toggleHomeModal()
+        },
+        toggleHomeModal() {
+            this.showHomeModal = !this.showHomeModal
+        },
+        discardAndGoHome() {
+            this.toggleHomeModal()
+            this.navigateToHome()
         },
         toggleDiscardModal() {
             this.showDiscardModal = !this.showDiscardModal
         },
+        handleDiscardModal() {
+            if (this.isUndoBtnEnabled)
+                this.toggleDiscardModal()
+        },
         discard() {
+            this.lastUndoState = this.noteStates.pop()
+            const firstNote = this.noteStates[0]
+            this.noteStates = []
+            this.note = firstNote
             this.toggleDiscardModal()
-            this.navigateToHome()
         }
     }
 }
