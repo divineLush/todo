@@ -7,13 +7,14 @@
                 @click="undo"
             ) Undo
             button.btn.btn--text(
-                :class="{ 'btn--disabled': !isRedoBtnEnabled }"
-                @click="redo"
-            ) Redo
-            button.btn.btn--text(
                 :class="{ 'btn--disabled': !isUndoBtnEnabled }"
                 @click="handleDiscardModal"
             ) Discard
+            button.btn.btn--text(
+                :class="{ 'btn--disabled': !isRedoBtnEnabled }"
+                @click="redo"
+            ) Redo
+
         AppNoteTodos(
             :note="note"
             :inputID="'editedTodoDesc'"
