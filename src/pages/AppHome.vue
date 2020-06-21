@@ -11,7 +11,7 @@
             div.home__note__control
                 button.btn.btn--text(@click="openDeleteModal(note)") Delete Note
                 router-link.link(:to="`/edit/${note.id}`")
-                    span Edit Note
+                    button.btn.btn--text.btn--link Edit Note
 
         AppModal(
             :isVisible="showAddNoteModal"

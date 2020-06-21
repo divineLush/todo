@@ -80,6 +80,15 @@ export default {
         }
       }
 
+      .btn--link {
+        color: $link-primary-color;
+        text-decoration: underline;
+
+        &:hover {
+          color: $btn-confirm-color;
+        }
+      }
+
       .btn--disabled {
         color: $btn-disabled-color;
 

@@ -1,6 +1,6 @@
 <template lang="pug">
     div
-        router-link.link(to="/") Home
+        button.btn.btn--text.btn--link(@click="handleHomeBtn") Home
         button.btn.btn--text(
             :class="{ 'btn--disabled': !isUndoBtnEnabled }"
             @click="undo"
@@ -16,6 +16,17 @@
         )
         button.btn.btn--confirm(@click="save") Save
 
+        AppModal(
+            :isVisible="showDiscardModal"
+            @close="toggleDiscardModal"
+        )
+            h3(slot="header") Discard changes
+            p(slot="body") All your changes will be lost
+            div(slot="footer")
+                div
+                    button.btn.btn--cancel(@click="toggleDiscardModal") Cancel
+                    button.btn.btn--confirm(@click="discard" style="margin-left: 3vh") Discard
+
         AppDeleteModal(
             :isVisible="showDeleteModal"
             :onClose="closeDeleteModal"
@@ -25,6 +36,7 @@
 </template>
 
 <script>
+import AppModal from '../components/modals/AppModal.vue'
 import AppDeleteModal from '../components/modals/AppDeleteModal.vue'
 import AppNoteTodos from '../components/AppNoteTodos.vue'
 import { EmptyNote, filteredNoteTodos, deepClone } from '../assets/utils'
@@ -32,12 +44,17 @@ import { EmptyNote, filteredNoteTodos, deepClone } from '../assets/utils'
 export default {
     name: 'AppEditNote',
 
-    components: { AppDeleteModal, AppNoteTodos },
+    components: {
+        AppDeleteModal,
+        AppModal,
+        AppNoteTodos
+    },
 
     data() {
         return {
             note: new EmptyNote(),
             showDeleteModal: false,
+            showDiscardModal: false,
             selectedTodoID: null,
             noteStates: [],
             lastUndoState: null
@@ -116,6 +133,19 @@ export default {
         redo() {
             if (this.isRedoBtnEnabled)
                 this.note = this.lastUndoState
+        },
+        handleHomeBtn() {
+            if (!this.isUndoBtnEnabled)
+                this.navigateToHome()
+            else
+                this.toggleDiscardModal()
+        },
+        toggleDiscardModal() {
+            this.showDiscardModal = !this.showDiscardModal
+        },
+        discard() {
+            this.toggleDiscardModal()
+            this.navigateToHome()
         }
     }
 }
