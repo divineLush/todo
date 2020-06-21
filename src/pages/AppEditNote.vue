@@ -4,7 +4,7 @@
         div
             button.btn.btn--text(
                 :class="{ 'btn--disabled': !isUndoBtnEnabled }"
-                @click="undo"
+                @click="handleUndo"
             ) Undo
             button.btn.btn--text(
                 :class="{ 'btn--disabled': !isUndoBtnEnabled }"
@@ -12,7 +12,7 @@
             ) Discard
             button.btn.btn--text(
                 :class="{ 'btn--disabled': !isRedoBtnEnabled }"
-                @click="redo"
+                @click="handleRedo"
             ) Redo
 
         AppNoteTodos(
@@ -39,13 +39,13 @@
             :bodyText="'All your changes will be lost'"
             :confirmBtnName="'Discard'"
             :onCancel="toggleDiscardModal"
-            :onConfirm="discard"
+            :onConfirm="handleDiscardConfirm"
         )
 
         AppDeleteModal(
             :isVisible="showDeleteModal"
             :onClose="closeDeleteModal"
-            :onDelete="deleteTodo"
+            :onDelete="handleDeleteTodo"
             :header="'Todo'"
         )
 </template>
@@ -138,21 +138,29 @@ export default {
         closeDeleteModal() {
             this.showDeleteModal = false
         },
+        handleDeleteTodo() {
+            this.deleteTodo()
+            this.closeDeleteModal()
+        },
         deleteTodo() {
             this.note.todos = this.note.todos
                 .filter(todo => todo.id !== this.selectedTodoID)
-            this.closeDeleteModal()
+        },
+        handleUndo() {
+            if (this.isUndoBtnEnabled)
+                this.undo()
         },
         undo() {
-            if (this.isUndoBtnEnabled) {
-                this.lastUndoState = this.noteStates.pop()
-                this.note = this.noteStates[this.noteStates.length - 1]
-                this.noteStates.pop()
-            }
+            this.lastUndoState = this.noteStates.pop()
+            this.note = this.noteStates[this.noteStates.length - 1]
+            this.noteStates.pop()
+        },
+        handleRedo() {
+            if (this.isRedoBtnEnabled)
+                this.redo()
         },
         redo() {
-            if (this.isRedoBtnEnabled)
-                this.note = this.lastUndoState
+            this.note = this.lastUndoState
         },
         handleHomeBtn() {
             if (!this.isUndoBtnEnabled)
@@ -174,12 +182,15 @@ export default {
             if (this.isUndoBtnEnabled)
                 this.toggleDiscardModal()
         },
+        handleDiscardConfirm() {
+            this.discard()
+            this.toggleDiscardModal()
+        },
         discard() {
             this.lastUndoState = this.noteStates.pop()
             const firstNote = this.noteStates[0]
             this.noteStates = []
             this.note = firstNote
-            this.toggleDiscardModal()
         }
     }
 }
