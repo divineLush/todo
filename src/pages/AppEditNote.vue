@@ -21,27 +21,25 @@
         )
         button.btn.btn--confirm(@click="save") Save
 
-        AppModal(
+        AppConfirmModal(
             :isVisible="showHomeModal"
-            @close="toggleHomeModal"
+            :onClose="toggleHomeModal"
+            :headerText="'You are about to leave the page'"
+            :bodyText="'All your changes will be lost'"
+            :confirmBtnName="'Go Home'"
+            :onCancel="toggleHomeModal"
+            :onConfirm="discardAndGoHome"
         )
-            h3(slot="header") You are about to leave the page
-            p(slot="body") All your changes will be lost
-            div(slot="footer")
-                div
-                    button.btn.btn--cancel(@click="toggleHomeModal") Cancel
-                    button.btn.btn--confirm(@click="discardAndGoHome" style="margin-left: 3vh") Go Home
 
-        AppModal(
+        AppConfirmModal(
             :isVisible="showDiscardModal"
-            @close="toggleDiscardModal"
+            :onClose="toggleDiscardModal"
+            :headerText="'Discard changes'"
+            :bodyText="'All your changes will be lost'"
+            :confirmBtnName="'Discard'"
+            :onCancel="toggleDiscardModal"
+            :onConfirm="discard"
         )
-            h3(slot="header") Discard changes
-            p(slot="body") All your changes will be lost
-            div(slot="footer")
-                div
-                    button.btn.btn--cancel(@click="toggleDiscardModal") Cancel
-                    button.btn.btn--confirm(@click="discard" style="margin-left: 3vh") Discard
 
         AppDeleteModal(
             :isVisible="showDeleteModal"
@@ -54,6 +52,7 @@
 <script>
 import AppModal from '../components/modals/AppModal.vue'
 import AppDeleteModal from '../components/modals/AppDeleteModal.vue'
+import AppConfirmModal from '../components/modals/AppConfirmModal.vue'
 import AppNoteTodos from '../components/AppNoteTodos.vue'
 import AppLink from '../components/AppLink.vue'
 import { EmptyNote, filteredNoteTodos, deepClone } from '../assets/utils'
@@ -65,7 +64,8 @@ export default {
         AppDeleteModal,
         AppModal,
         AppNoteTodos,
-        AppLink
+        AppLink,
+        AppConfirmModal
     },
 
     data() {
