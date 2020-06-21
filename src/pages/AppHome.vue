@@ -37,7 +37,12 @@ import AppModal from '../components/modals/AppModal.vue'
 import AppDeleteModal from '../components/modals/AppDeleteModal.vue'
 import AppNoteTodos from '../components/AppNoteTodos.vue'
 import AppLink from '../components/AppLink.vue'
-import { EmptyNote, filteredNoteTodos, deepClone } from '../assets/utils'
+import {
+    EmptyNote,
+    filteredNoteTodos,
+    deepClone,
+    filterByID
+} from '../assets/utils'
 
 export default {
     name: 'AppHome',
@@ -114,8 +119,7 @@ export default {
             this.selectedNoteID = null
         },
         deleteNote() {
-            this.notes = this.notes
-                .filter(note => note.id !== this.selectedNoteID)
+            this.notes = filterByID(this.notes, this.selectedNoteID)
             this.closeDeleteModal()
         }
     }

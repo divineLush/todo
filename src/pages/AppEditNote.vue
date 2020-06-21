@@ -1,17 +1,21 @@
 <template lang="pug">
     div.edit-note-wrapper
-        AppLink(:name="'Home'" :to="'/'" :onClick="handleHomeBtn")
+        AppLink(
+            :name="'Home'"
+            :to="'/'"
+            :onClick="handleHomeBtn"
+        )
         div
             button.btn.btn--text(
-                :class="{ 'btn--disabled': !isUndoBtnEnabled }"
+                :class="undoBtnClass"
                 @click="handleUndo"
             ) Undo
             button.btn.btn--text(
-                :class="{ 'btn--disabled': !isUndoBtnEnabled }"
+                :class="undoBtnClass"
                 @click="handleDiscardModal"
             ) Discard
             button.btn.btn--text(
-                :class="{ 'btn--disabled': !isRedoBtnEnabled }"
+                :class="redoBtnClass"
                 @click="handleRedo"
             ) Redo
 
@@ -56,7 +60,13 @@ import AppDeleteModal from '../components/modals/AppDeleteModal.vue'
 import AppConfirmModal from '../components/modals/AppConfirmModal.vue'
 import AppNoteTodos from '../components/AppNoteTodos.vue'
 import AppLink from '../components/AppLink.vue'
-import { EmptyNote, filteredNoteTodos, deepClone } from '../assets/utils'
+import {
+    EmptyNote,
+    filteredNoteTodos,
+    deepClone,
+    disabledBtnClass,
+    filterByID
+} from '../assets/utils'
 
 export default {
     name: 'AppEditNote',
@@ -91,6 +101,12 @@ export default {
         isRedoBtnEnabled() {
             return this.lastUndoState !== null
                 && this.note !== this.lastUndoState
+        },
+        undoBtnClass() {
+            return disabledBtnClass(!this.isUndoBtnEnabled)
+        },
+        redoBtnClass() {
+            return disabledBtnClass(!this.isRedoBtnEnabled)
         }
     },
 
@@ -143,8 +159,7 @@ export default {
             this.closeDeleteModal()
         },
         deleteTodo() {
-            this.note.todos = this.note.todos
-                .filter(todo => todo.id !== this.selectedTodoID)
+            this.note.todos = filterByID(this.note.todos, this.selectedTodoID)
         },
         handleUndo() {
             if (this.isUndoBtnEnabled)

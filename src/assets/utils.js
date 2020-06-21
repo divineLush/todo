@@ -22,3 +22,9 @@ export const filteredNoteTodos = note =>
 
 export const deepClone = obj =>
     JSON.parse(JSON.stringify(obj))
+
+export const disabledBtnClass = condition =>
+    ({ 'btn--disabled': condition })
+
+export const filterByID = (obj, id) =>
+    obj.filter(item => item.id !== id)
