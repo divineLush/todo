@@ -119,7 +119,7 @@ export default {
             }
 
             & &__checkmark:after {
-                left: 2.4vh;
+                left: 2.6vh;
                 top: 1.5vh;
                 width: 1vh;
                 height: 2vh;
