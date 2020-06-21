@@ -14,7 +14,7 @@
                     span Edit Note
 
         AppModal(
-            v-if="showAddNoteModal"
+            :isVisible="showAddNoteModal"
             @close="closeAddModal"
         )
             h3(slot="header") Add Note

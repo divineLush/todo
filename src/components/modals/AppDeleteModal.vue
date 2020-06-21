@@ -1,6 +1,6 @@
 <template lang="pug">
     AppModal(
-        v-if="isVisible"
+        :isVisible="isVisible"
         @close="onClose"
     )
         h3(slot="header") Delete {{ header }}

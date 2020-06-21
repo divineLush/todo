@@ -1,5 +1,5 @@
 <template lang="pug">
-    transition(name="modal")
+    transition(v-if="isVisible" name="modal")
         div.modal
             div.modal__wrapper
                 div.modal__wrapper__content
@@ -14,6 +14,13 @@
 <script>
 export default {
     name: 'AppModal',
+
+    props: {
+        isVisible: {
+            type: Boolean,
+            required: true
+        }
+    },
 
     mounted() {
         document.addEventListener('keydown', e => {
