@@ -1,14 +1,15 @@
 <template lang="pug">
-    div
+    div.edit-note-wrapper
         AppLink(:name="'Home'" :to="'/'" :onClick="handleHomeBtn")
-        button.btn.btn--text(
-            :class="{ 'btn--disabled': !isUndoBtnEnabled }"
-            @click="undo"
-        ) Undo
-        button.btn.btn--text(
-            :class="{ 'btn--disabled': !isRedoBtnEnabled }"
-            @click="redo"
-        ) Redo
+        div
+            button.btn.btn--text(
+                :class="{ 'btn--disabled': !isUndoBtnEnabled }"
+                @click="undo"
+            ) Undo
+            button.btn.btn--text(
+                :class="{ 'btn--disabled': !isRedoBtnEnabled }"
+                @click="redo"
+            ) Redo
         AppNoteTodos(
             :note="note"
             :inputID="'editedTodoDesc'"
@@ -152,3 +153,11 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    @import '../assets/scss/mixins';
+
+    .edit-note-wrapper {
+        @include centeredContent;
+    }
+</style>

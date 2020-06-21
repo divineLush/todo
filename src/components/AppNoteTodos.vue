@@ -1,5 +1,5 @@
 <template lang="pug">
-    div
+    div.note-todos-wrapper
         div.text-input-container(style="margin: 0 0 6vh")
             label.label(for="editedNoteTitle") Note Title
             input.text-input(v-model.lazy="note.title" id="editedNoteTitle")
@@ -59,9 +59,14 @@ export default {
 
 <style lang="scss" scoped>
     @import '../assets/scss/colors';
+    @import '../assets/scss/mixins';
 
     .text-input-container {
         margin: 3vh 0;
+    }
+
+    .note-todos-wrapper {
+        @include centeredContent;
     }
 
     .todo {
