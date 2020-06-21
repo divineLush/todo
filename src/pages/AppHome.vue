@@ -10,8 +10,7 @@
                 ) {{ todo.name }}
             div.home__note__control
                 button.btn.btn--text(@click="openDeleteModal(note)") Delete Note
-                router-link.link(:to="`/edit/${note.id}`")
-                    button.btn.btn--text.btn--link Edit Note
+                AppLink(:name="'Edit note'" :to="`/edit/${note.id}`")
 
         AppModal(
             :isVisible="showAddNoteModal"
@@ -37,12 +36,18 @@
 import AppModal from '../components/modals/AppModal.vue'
 import AppDeleteModal from '../components/modals/AppDeleteModal.vue'
 import AppNoteTodos from '../components/AppNoteTodos.vue'
+import AppLink from '../components/AppLink.vue'
 import { EmptyNote, filteredNoteTodos, deepClone } from '../assets/utils'
 
 export default {
     name: 'AppHome',
 
-    components: { AppModal, AppDeleteModal, AppNoteTodos },
+    components: {
+        AppModal,
+        AppDeleteModal,
+        AppNoteTodos,
+        AppLink
+    },
 
     data() {
         return {
@@ -95,9 +100,9 @@ export default {
             this.addNote()
             this.closeAddModal()
         },
-        
+
         // I know duplicating code is a bad idea,
-        // but manipulating the state of the parent component 
+        // but manipulating the state of the parent component
         // by mutating props is considered an anti-pattern in Vue,
         // so I would rather leave it as it is
         openDeleteModal(note) {

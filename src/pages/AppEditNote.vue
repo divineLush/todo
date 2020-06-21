@@ -1,6 +1,6 @@
 <template lang="pug">
     div
-        button.btn.btn--text.btn--link(@click="handleHomeBtn") Home
+        AppLink(:name="'Home'" :to="'/'" :onClick="handleHomeBtn")
         button.btn.btn--text(
             :class="{ 'btn--disabled': !isUndoBtnEnabled }"
             @click="undo"
@@ -25,7 +25,7 @@
             div(slot="footer")
                 div
                     button.btn.btn--cancel(@click="toggleDiscardModal") Cancel
-                    button.btn.btn--confirm(@click="discard" style="margin-left: 3vh") Discard
+                    button.btn.btn--confirm(@click="discard" style="margin-left: 3vh") Go Home
 
         AppDeleteModal(
             :isVisible="showDeleteModal"
@@ -39,6 +39,7 @@
 import AppModal from '../components/modals/AppModal.vue'
 import AppDeleteModal from '../components/modals/AppDeleteModal.vue'
 import AppNoteTodos from '../components/AppNoteTodos.vue'
+import AppLink from '../components/AppLink.vue'
 import { EmptyNote, filteredNoteTodos, deepClone } from '../assets/utils'
 
 export default {
@@ -47,7 +48,8 @@ export default {
     components: {
         AppDeleteModal,
         AppModal,
-        AppNoteTodos
+        AppNoteTodos,
+        AppLink
     },
 
     data() {
