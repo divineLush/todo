@@ -31,7 +31,7 @@
             :onClose="toggleHomeModal"
             :headerText="'You are about to leave the page'"
             :bodyText="'All your changes will be lost'"
-            :confirmBtnName="'Go Home'"
+            :confirmBtnName="'Go home'"
             :onCancel="toggleHomeModal"
             :onConfirm="discardAndGoHome"
         )
@@ -50,7 +50,7 @@
             :isVisible="showDeleteModal"
             :onClose="closeDeleteModal"
             :onDelete="handleDeleteTodo"
-            :header="'Todo'"
+            :header="'todo'"
         )
 </template>
 

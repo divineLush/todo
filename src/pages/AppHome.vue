@@ -9,14 +9,14 @@
                     v-for="(todo, i) in note.todos" :key="i"
                 ) {{ todo.name }}
             div.home__note__control
-                button.btn.btn--text(@click="openDeleteModal(note)") Delete Note
+                button.btn.btn--text(@click="openDeleteModal(note)") Delete note
                 AppLink(:name="'Edit note'" :to="`/edit/${note.id}`")
 
         AppModal(
             :isVisible="showAddNoteModal"
             @close="closeAddModal"
         )
-            h3(slot="header") Add Note
+            h3(slot="header") Add note
             div(slot="body")
                 AppNoteTodos(:note="newNote" :inputID="'newTodoDesc'")
             div(slot="footer")

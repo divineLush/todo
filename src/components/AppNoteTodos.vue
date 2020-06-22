@@ -1,11 +1,11 @@
 <template lang="pug">
     div.note-todos-wrapper
         div.text-input-container(style="margin: 0 0 6vh")
-            label.label(for="editedNoteTitle") Note Title
+            label.label(for="editedNoteTitle") Note title
             input.text-input(v-model.lazy="note.title" id="editedNoteTitle")
         div.todo(v-for="(todo, i) in note.todos" :key="i")
             div.text-input-container
-                label.label(:for="`${inputID}${i}`") Todo Name
+                label.label(:for="`${inputID}${i}`") Todo name
                 input.text-input(v-model.lazy="todo.name" :id="`${inputID}${i}`")
             div.todo__control(v-if="hasDeleteProp" style="display: flex")
                 label.todo__checkbox-container
@@ -15,7 +15,7 @@
                     )
                     span.todo__checkbox-container__checkmark
                 button.btn.btn--text(@click="onDelete(todo)") Delete
-        button.btn.btn--add(v-if="canAddTodo" @click="addTodo") Add Todo
+        button.btn.btn--add(v-if="canAddTodo" @click="addTodo") Add todo
 </template>
 
 <script>
