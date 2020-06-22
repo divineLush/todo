@@ -28,7 +28,7 @@
 
         AppConfirmModal(
             :isVisible="showHomeModal"
-            :onClose="showHomeModal = false"
+            :onClose="toggleHomeModal"
             :headerText="'You are about to leave the page'"
             :bodyText="'All your changes will be lost'"
             :confirmBtnName="'Go Home'"
@@ -38,7 +38,7 @@
 
         AppConfirmModal(
             :isVisible="showDiscardModal"
-            :onClose="showDiscardModal = false"
+            :onClose="toggleDiscardModal"
             :headerText="'Discard changes'"
             :bodyText="'All your changes will be lost'"
             :confirmBtnName="'Discard'"
