@@ -32,6 +32,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '../../assets/scss/colors';
+
     .modal {
         position: fixed;
         z-index: 9998;
@@ -51,7 +53,7 @@ export default {
                 width: fit-content;
                 margin: 0px auto;
                 padding: 3vh 4vh;
-                background-color: #fff;
+                background-color: $main-background-color;
                 border-radius: 2px;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
                 transition: all 0.3s ease;

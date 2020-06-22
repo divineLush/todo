@@ -70,8 +70,6 @@ export default {
     }
 
     .todo {
-        margin-bottom: 20px;
-
         &__control {
             margin-top: 5px;
         }

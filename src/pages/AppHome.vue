@@ -149,7 +149,7 @@ export default {
             }
 
             &__todo-wrapper {
-                margin: 2.5vh 0;
+                margin: 3vh 0;
 
                 &__todo {
                     @include centeredContent;
