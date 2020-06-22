@@ -24,7 +24,7 @@
             :inputID="'editedTodoDesc'"
             :onDelete="openDeleteModal"
         )
-        button.btn.btn--confirm(@click="save") Save
+        button.btn.btn--confirm.btn--save(@click="save") Save
 
         AppConfirmModal(
             :isVisible="showHomeModal"
@@ -220,5 +220,9 @@ export default {
 
     .edit-note-wrapper {
         @include centeredContent;
+
+        .btn--save {
+            margin: 2vh 0 4vh;
+        }
     }
 </style>
