@@ -52,10 +52,10 @@
 }
 
 .btn--link {
-    color: $link-primary-color !important;
-    text-decoration: underline;
+  color: $link-primary-color !important;
+  text-decoration: underline;
 
-    &:hover {
-      color: $btn-confirm-color !important;
-    }
+  &:hover {
+    color: $btn-confirm-color !important;
+  }
 }

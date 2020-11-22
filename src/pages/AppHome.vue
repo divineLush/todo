@@ -1,6 +1,8 @@
 <template lang="pug">
     section.home
+        button.btn.btn--add(@click="addInitialNotes") Add initial notes
         button.btn.btn--add(@click="showAddNoteModal = true") Add note
+        button.btn.btn--cancel(@click="deleteNotes") Delete all notes
         section.home__notes-wrapper
             article.home__note(v-for="(note, i) in filteredNotes" :key="i")
                 div.home__note__header
@@ -38,6 +40,7 @@ import AppModal from '../components/modals/AppModal.vue'
 import AppDeleteModal from '../components/modals/AppDeleteModal.vue'
 import AppNoteTodos from '../components/AppNoteTodos.vue'
 import AppLink from '../components/AppLink.vue'
+import { initialNotes } from '../assets/initialNotes'
 import {
     EmptyNote,
     filteredNoteTodos,
@@ -122,6 +125,12 @@ export default {
         deleteNote() {
             this.notes = filterByID(this.notes, this.selectedNoteID)
             this.closeDeleteModal()
+        },
+        addInitialNotes () {
+            this.notes = [...initialNotes, ...this.notes]
+        },
+        deleteNotes() {
+            this.notes = []
         }
     }
 }
