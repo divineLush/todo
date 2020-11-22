@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: $main-background-color;
+    color: $main-text-color;
+    font-size: 3vh;
+
+    #app {
+        @include centeredContent;
+        font-family: $font-primary;
+        .link {
+            color: $link-primary-color;
+            &:hover {
+                 color: $btn-confirm-color;
+            }
+        }
+    }
+}
