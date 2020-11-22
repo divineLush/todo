@@ -1,8 +1,14 @@
 .home {
     @include centeredContent;
 
+    &__notes-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 70vw;
+    }
+
     &__note {
-        margin: 2vh 0;
+        margin: 3vh;
         border: 0.6vh dotted $btn-add-color;
         padding: 2vh;
 

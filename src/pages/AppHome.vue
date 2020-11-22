@@ -1,16 +1,17 @@
 <template lang="pug">
     section.home
         button.btn.btn--add(@click="showAddNoteModal = true") Add note
-        article.home__note(v-for="(note, i) in filteredNotes" :key="i")
-            div.home__note__header
-                p.home__note__header__title {{ note.title }}
-            div.home__note__todo-wrapper
-                p.home__note__todo-wrapper__todo(
-                    v-for="(todo, i) in note.todos" :key="i"
-                ) {{ todo.name }}
-            div.home__note__control
-                button.btn.btn--text(@click="openDeleteModal(note)") Delete note
-                AppLink(:name="'Edit note'" :to="`/edit/${note.id}`")
+        section.home__notes-wrapper
+            article.home__note(v-for="(note, i) in filteredNotes" :key="i")
+                div.home__note__header
+                    p.home__note__header__title {{ note.title }}
+                div.home__note__todo-wrapper
+                    p.home__note__todo-wrapper__todo(
+                        v-for="(todo, i) in note.todos" :key="i"
+                    ) {{ todo.name }}
+                div.home__note__control
+                    button.btn.btn--text(@click="openDeleteModal(note)") Delete note
+                    AppLink(:name="'Edit note'" :to="`/edit/${note.id}`")
 
         AppModal(
             :isVisible="showAddNoteModal"
