@@ -1,7 +1,7 @@
 <template lang="pug">
-    div.home
+    section.home
         button.btn.btn--add(@click="showAddNoteModal = true") Add note
-        div.home__note(v-for="(note, i) in filteredNotes" :key="i")
+        article.home__note(v-for="(note, i) in filteredNotes" :key="i")
             div.home__note__header
                 p.home__note__header__title {{ note.title }}
             div.home__note__todo-wrapper

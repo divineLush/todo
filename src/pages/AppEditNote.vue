@@ -1,11 +1,11 @@
 <template lang="pug">
-    div.edit-note-wrapper
+    section.edit-note-wrapper
         AppLink(
             :name="'Home'"
             :to="'/'"
             :onClick="handleHomeBtn"
         )
-        div
+        article
             button.btn.btn--text(
                 :class="undoBtnClass"
                 @click="handleUndo"

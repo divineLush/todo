@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#app
+  section#app
     AppHeader
     main
       router-view

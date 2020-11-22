@@ -1,9 +1,9 @@
 <template lang="pug">
-    div.note-todos-wrapper
-        div.text-input-container(style="margin: 0 0 6vh")
+    section.note-todos-wrapper
+        article.text-input-container(style="margin: 0 0 6vh")
             label.label(for="editedNoteTitle") Note title
             input.text-input(v-model.lazy="note.title" id="editedNoteTitle")
-        div.todo(v-for="(todo, i) in note.todos" :key="i")
+        article.todo(v-for="(todo, i) in note.todos" :key="i")
             div.text-input-container
                 label.label(:for="`${inputID}${i}`") Todo name
                 input.text-input(v-model.lazy="todo.name" :id="`${inputID}${i}`")
