@@ -31,16 +31,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-    @import '../assets/scss/colors';
-
-    .btn--link {
-        color: $link-primary-color !important;
-        text-decoration: underline;
-
-        &:hover {
-          color: $btn-confirm-color !important;
-        }
-    }
-</style>

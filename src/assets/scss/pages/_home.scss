@@ -1,0 +1,37 @@
+.home {
+    @include centeredContent;
+
+    &__note {
+        margin: 2vh 0;
+        border: 0.6vh dotted $btn-add-color;
+        padding: 2vh;
+
+        &__header {
+            @include centeredContent;
+
+            &__title {
+                @include text-wrap;
+                font-weight: bold;
+                margin: 0;
+            }
+        }
+
+        &__todo-wrapper {
+            margin: 3vh 0;
+
+            &__todo {
+                @include centeredContent;
+                @include text-wrap;
+                margin: 1vh 0;
+            }
+        }
+
+        &__control {
+            @include centeredContent;
+
+            .btn {
+                padding-top: 0 !important;
+            }
+        }
+    }
+}

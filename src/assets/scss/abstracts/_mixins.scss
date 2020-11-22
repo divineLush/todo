@@ -1,0 +1,21 @@
+@mixin centeredContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin customBtn($primary-color, $secondary-color) {
+    border-color: $primary-color;
+
+    &:hover {
+        border-color: $primary-color;
+        background-color: $primary-color;
+        color:  $secondary-color;
+    }
+}
+
+@mixin text-wrap {
+    word-break: break-all;
+    white-space: normal;
+    max-width: 60vw;
+}

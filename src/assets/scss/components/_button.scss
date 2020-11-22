@@ -1,0 +1,58 @@
+.btn {
+  cursor: pointer;
+  border: 0.2vh solid $btn-border-color;
+  font-size: 3vh;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1.5vh 3vh;
+  text-align: center;
+  color: $main-text-color;
+  background-color: $main-background-color;
+  user-select: none;
+
+  &:hover {
+    border-color: $btn-border-color;
+    background-color: $btn-border-color;
+    color: $main-background-color;
+  }
+}
+
+.btn--cancel {
+  @include customBtn($btn-cancel-color, $main-background-color);
+}
+
+.btn--confirm {
+  @include customBtn($btn-confirm-color, $main-background-color);
+}
+
+.btn--add {
+  @include customBtn($btn-add-color, $main-background-color);
+  margin: 10px 0;
+}
+
+.btn--text {
+  border: none;
+  font-weight: bold;
+  color: $btn-cancel-color;
+
+  &:hover {
+    background-color: $main-background-color;
+    color: $btn-confirm-color;
+  }
+}
+
+.btn--disabled {
+  color: $btn-disabled-color;
+
+  &:hover {
+    color: $btn-disabled-color;
+  }
+}
+
+.btn--link {
+    color: $link-primary-color !important;
+    text-decoration: underline;
+
+    &:hover {
+      color: $btn-confirm-color !important;
+    }
+}
