@@ -8,6 +8,7 @@
   color: $main-text-color;
   background-color: $main-background-color;
   user-select: none;
+  transition: all .4s;
 
   &:hover {
     border-color: $btn-border-color;
@@ -22,10 +23,12 @@
 
 .btn--confirm {
   @include customBtn($btn-confirm-color, $main-background-color);
+  @include animatedBtn;
 }
 
 .btn--add {
   @include customBtn($btn-add-color, $main-background-color);
+  @include animatedBtn;
   margin: 10px 0;
 }
 

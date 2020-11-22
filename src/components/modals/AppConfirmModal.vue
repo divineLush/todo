@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import '../../assets/scss/mixins';
+    @import '../../assets/scss/abstracts/mixins';
 
     .header-text {
         @include text-wrap;

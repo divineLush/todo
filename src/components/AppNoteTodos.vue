@@ -58,8 +58,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import '../assets/scss/colors';
-    @import '../assets/scss/mixins';
+    @import '../assets/scss/abstracts/colors';
+    @import '../assets/scss/abstracts/mixins';
 
     .text-input-container {
         margin: 3vh 0;
