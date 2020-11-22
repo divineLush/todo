@@ -2,7 +2,10 @@
     section.home
         button.btn.btn--add(@click="addInitialNotes") Add initial notes
         button.btn.btn--add(@click="showAddNoteModal = true") Add note
-        button.btn.btn--cancel(@click="deleteNotes") Delete all notes
+        button.btn.btn--cancel(
+            v-if="notes.length"
+            @click="deleteNotes"
+        ) Delete all notes
         section.home__notes-wrapper
             article.home__note(v-for="(note, i) in filteredNotes" :key="i")
                 div.home__note__header
