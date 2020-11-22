@@ -47,7 +47,6 @@ export default {
         color: $main-text-color;
         background-color: $main-background-color;
         user-select: none;
-        outline:none;
 
         &:hover {
           border-color: $btn-border-color;
@@ -100,7 +99,6 @@ export default {
         padding: 0.5vh;
         background-color: $main-background-color;
         border: 0.2vh solid $main-text-color;
-        outline: none;
 
         &:focus {
           background-color: $main-text-color;
