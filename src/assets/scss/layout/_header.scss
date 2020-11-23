@@ -1,5 +1,7 @@
 .header {
-    margin: 20px 0;
+    padding: 15px 0;
+    width: 100%;
+    background-image: linear-gradient(to bottom, lighten($btn-border-color, 7%), transparent);
 
     &__title {
         text-align: center;

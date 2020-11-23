@@ -1,7 +1,8 @@
 <template lang="pug">
     section.home
-        button.btn.btn--add(@click="addDefaultNotes") Add default notes
-        button.btn.btn--add(@click="showAddNoteModal = true") Add note
+        div.home__add-btns-wrapper
+            button.btn.btn--add(@click="addDefaultNotes") Add default notes
+            button.btn.btn--add(@click="showAddNoteModal = true") Add note
         button.btn.btn--cancel(
             v-if="notes.length"
             @click="deleteNotes"

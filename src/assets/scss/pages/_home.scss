@@ -1,6 +1,12 @@
 .home {
     @include centeredContent;
 
+    &__add-btns-wrapper > *{
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+    }
+
     &__notes-wrapper {
         display: flex;
         flex-wrap: wrap;
