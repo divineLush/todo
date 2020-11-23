@@ -1,6 +1,6 @@
 <template lang="pug">
     section.home
-        button.btn.btn--add(@click="addInitialNotes") Add initial notes
+        button.btn.btn--add(@click="addDefaultNotes") Add default notes
         button.btn.btn--add(@click="showAddNoteModal = true") Add note
         button.btn.btn--cancel(
             v-if="notes.length"
@@ -43,7 +43,7 @@ import AppModal from '../components/modals/AppModal.vue'
 import AppDeleteModal from '../components/modals/AppDeleteModal.vue'
 import AppNoteTodos from '../components/AppNoteTodos.vue'
 import AppLink from '../components/AppLink.vue'
-import { initialNotes } from '../assets/initialNotes'
+import { defaultNotes } from '../assets/defaultNotes'
 import {
     EmptyNote,
     filteredNoteTodos,
@@ -129,8 +129,8 @@ export default {
             this.notes = filterByID(this.notes, this.selectedNoteID)
             this.closeDeleteModal()
         },
-        addInitialNotes () {
-            this.notes = [...initialNotes, ...this.notes]
+        addDefaultNotes () {
+            this.notes = [...defaultNotes, ...this.notes]
         },
         deleteNotes() {
             this.notes = []

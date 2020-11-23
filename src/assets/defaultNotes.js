@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 
-export const initialNotes = [
+export const defaultNotes = [
     {
         title: 'Reading',
         id: uuidv4(),
